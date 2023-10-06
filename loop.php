@@ -55,3 +55,15 @@ echo join(', ', $arr);
 echo '<br>一共執行了'.$count.'次';
 
 ?>
+
+<h3>陣列</h3><br>
+
+<?php
+
+    $arr = ['甲', '乙', '丙'];
+
+    foreach($arr as $index=>$element){
+        echo $index.' => '.$element.'<br>';
+    }
+
+?>
