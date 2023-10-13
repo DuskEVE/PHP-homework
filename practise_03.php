@@ -3,6 +3,10 @@
 
 *{
     font-family: 'Courier New', Courier, monospace;
+    line-height: 10px;
+}
+.red{
+    color: red;
 }
 
 </style>
@@ -101,5 +105,73 @@ for($i=0; $i<$n; $i++){
     }
 }
 echo '<pre>'.(join('', $arr)).'</pre>';
+
+?>
+
+<br><hr><br>
+
+<?php
+
+$n = 10;
+$arr = [];
+
+// for($i=0; $i<$n; $i++){
+//     $str = '';
+//     for($j=0; $j<$n; $j++){
+//         if($i == 0 || $j ==0 || $i == $n-1 || $j == $n-1) $str = $str.'*';
+//         else $str = $str.' ';
+//     }
+//     array_push($arr, $str.'<br>');
+// }
+// echo '<pre>'.(join('', $arr)).'</pre>';
+
+for($i=0; $i<$n; $i++){
+    if($i == 0 || $i == $n-1) $str = str_repeat('*', $n);
+    else $str = '*'.(str_repeat(' ', $n-2)).'*';
+    array_push($arr, $str.'<br>');
+}
+echo '<pre>'.(join('', $arr)).'</pre>';
+
+?>
+
+<br><hr><br>
+
+<?php
+
+$n = 10;
+$arr = [];
+
+for($i=0; $i<$n; $i++){
+    $str = '';
+    for($j=0; $j<$n; $j++){
+        if($i == 0 || $j ==0 || $i == $n-1 || $j == $n-1 ||
+            $i == $j || $n-1-$i == $j) $str = $str.'*';
+        else $str = $str.' ';
+    }
+    array_push($arr, $str.'<br>');
+}
+echo '<pre>'.(join('', $arr)).'</pre>';
+
+
+?>
+
+<br><hr><br>
+
+<?php
+
+$n = 10;
+$arr = [];
+
+for($i=0; $i<$n; $i++){
+    $str = '';
+    for($j=0; $j<$n; $j++){
+        if($i == 0 || $j ==0 || $i == $n-1 || $j == $n-1) $str = $str.'<td>*</td>';
+        else if($i == $j || $n-1-$i == $j) $str = $str.'<td class="red">*</td>';
+        else $str = $str.'<td></td>';
+    }
+    array_push($arr, '<tr>'.$str.'</tr>');
+}
+echo '<table>'.(join('', $arr)).'</table>';
+
 
 ?>
