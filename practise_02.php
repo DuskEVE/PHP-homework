@@ -8,6 +8,7 @@
     }
     table{
         border-collapse: collapse;
+        border: 2px solid;
         width: 45vw;
         height: 45vh;
         margin: auto;
@@ -93,7 +94,7 @@
             $str = '';
 
             // hide upright table
-            if($i < $j){
+            if($i < $j && $i != 0){
                 $str = '<td class="hide">';
                 array_push($arr, $str.'</td>');
                 continue;
@@ -116,3 +117,36 @@
     echo '<table>'.$arr.'</table>';
 
 ?>
+
+<br><h3>字元搜尋</h3><br>
+
+<?php
+
+$str = '印出搜尋的目標字母或字串位在該字串中的位置';
+$target = '字串';
+
+function searchChar($str, $target){
+    $result = [];
+    $i = 0;
+    $size = mb_strlen($target);
+    // $arr = str_split($str);
+
+    while($i < mb_strlen($str) - $size){
+        // $s = join('',array_slice($arr, $i, $size));
+        $s = mb_substr($str, $i, $size);
+        if($s == $target){
+            array_push($result, $i+1);
+            break;
+        }
+        $i++;
+    }
+
+    if(count($result) == 0) return 'not found any matched substring';
+    return 'target string position: '.(join(', ', $result)).'<br>target:'.$target;
+}
+
+echo searchChar($str, $target);
+
+?>
+
+<br>
