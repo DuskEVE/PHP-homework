@@ -43,6 +43,7 @@
         }
         .form-box{
             width: 100%;
+            height: 50px;
             display: flex;
             justify-content: center;
         }
@@ -50,6 +51,9 @@
             text-align: center;
             width: 100%;
             margin: auto;
+        }
+        a{
+            text-decoration: none;
         }
     </style>
 </head>
@@ -68,7 +72,7 @@
 <div class="container">
 
     <div class="form-box">
-        <form action="./calendar.php" method="get">
+        <form action="./index.php" method="get">
             <label for="year">西元年:</label>
             <input type="number" id="year" name="year" min="0" max="10000" require>
             &nbsp;&nbsp;
@@ -77,6 +81,35 @@
             &nbsp;&nbsp;
             <input type="submit" name="" id="">
         </form>
+    </div>
+
+    <div class="nav-btn">
+        <?php
+            $url = explode('?', $_SERVER['REQUEST_URI']); 
+            if(count($url) == 1){
+                echo '<button><a href="'.$url[0].'"> <- </a></button><button><a href="'.$url[0].'"> -> </a></button>';
+            }
+            else{
+                $prevYear = $_GET['year'];
+                $nextYear = $_GET['year'];
+                $prevMonth = $_GET['month'] - 1;
+                $nextMonth = $_GET['month'] + 1;
+
+                if($prevMonth <= 0){
+                    $prevMonth = 12;
+                    $prevYear--;
+                }
+                else if($nextMonth > 12){
+                    $nextMonth = 1;
+                    $nextYear++;
+                }
+                
+                $prev = '?year='.$prevYear.'&month='.$prevMonth;
+                $next = '?year='.$nextYear.'&month='.$nextMonth;
+                echo '<button><a href="'.$url[0].$prev.'"> <- </a></button><button><a href="'.
+                $url[0].$next.'"> -> </a></button>';
+            }
+        ?>
     </div>
 
     <?php
